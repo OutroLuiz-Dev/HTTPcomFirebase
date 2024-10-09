@@ -24,7 +24,7 @@ const ra = document.querySelector('#ra');
 
 
 
-// Função para adicionar o item ao Firebase
+// Função para adicionar o item 
 const addItem = async (data) => {
     const newItemRef = ref(db, 'Alunos'); 
     const newItemKey = push(newItemRef).key; 
