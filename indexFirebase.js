@@ -22,10 +22,7 @@ const cadastrar = document.querySelector('#Bcadastrar');
 const nome = document.querySelector('#nome');
 const ra = document.querySelector('#ra');
 
-// Abre o modal ao clicar em "FAZER CADASTRO"
-fazerCadastro.addEventListener('click', () => {
-    modal.showModal();
-});
+
 
 // Função para adicionar o item ao Firebase
 const addItem = async (data) => {
