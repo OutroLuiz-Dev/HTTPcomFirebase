@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Para adicionar um novo item
+// POST
 const addItem = async (data) => {
     const newItemRef = ref(db, 'Alunos'); // Altere 'suaColecao' para o caminho desejado
     const newItemKey = push(newItemRef).key; // Gera uma nova chave para o item
@@ -29,9 +29,10 @@ const addItem = async (data) => {
     }
 };
 
-// // Exemplo de uso:
+// Exemplo de uso:
 // addItem({ nome: 'Aline', ra: 10222444, sala: 3 });
 
+//GET todos os alunos
 const getItems = async () => {
     const itemsRef = ref(db, 'Alunos'); // Altere 'Alunos' para o caminho desejado
     try {
@@ -49,10 +50,10 @@ const getItems = async () => {
     }
 };
 
-// // Exemplo de uso:
+
 // getItems();
 
-// Para obter um item específico pelo ID:
+// GET pelo ra
 const getItemByRa = async (ra) => {
     const itemsRef = ref(db, 'Alunos'); // Altere 'Alunos' para a sua coleção
     try {
@@ -82,9 +83,10 @@ const getItemByRa = async (ra) => {
 };
 
 // Exemplo de uso:
-// getItemByRa(101019290); // Altere 'RA_DO_ALUNO' para o RA real
-// Para atualizar um item existente:
+// getItemByRa(10222333); // Altere 'RA_DO_ALUNO' para o RA real
 
+
+//PUT pelo RA
 const updateItemByRa = async (ra, data) => {
     const itemsRef = ref(db, 'Alunos'); // Altere 'Alunos' para sua coleção
     try {
@@ -116,9 +118,9 @@ const updateItemByRa = async (ra, data) => {
 };
 
 // Exemplo de uso:
-// updateItemByRa(10222444, { ra: 333333, sala: 5, nome: 'Joelma'}); // Altere 'RA_DO_ALUNO' para o RA real
+// updateItemByRa(10222333, { ra: 1252523, sala: 8, nome: 'João'}); // Altere 'RA_DO_ALUNO' para o RA real
 
-// Para excluir um item:
+// DELETE pelo ra:
 const deleteItemByRa = async (ra) => {
     const itemsRef = ref(db, 'Alunos'); // Altere 'Alunos' para o caminho desejado
     try {
@@ -130,7 +132,7 @@ const deleteItemByRa = async (ra) => {
             // Percorre os alunos para encontrar pelo RA
             Object.keys(items).forEach((key) => {
 
-                if (items[key].ra === ra && items[key].email === email) {
+                if (items[key].ra === ra) {
                     foundKey = key; // Salva a chave do documento encontrado
                 }
 
