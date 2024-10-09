@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <link rel="stylesheet" href="./index.css">
     <title>Document</title>
 </head>
 <body>
-    
-    <input type="text" name="" id="nome" placeholder="Nome:">
-    <input type="text" name="" id="ra" placeholder="RA:">
 
+    <dialog id="dialog">
+        <input type="text" name="" id="nome" placeholder="Nome:">
+        <input type="text" name="" id="ra" placeholder="RA:">
+        <button id="Bcadastrar">CADASTRAR</button>
+    </dialog>
+
+    <div class="containerBotoes">
+        <button id="BfazerCadastro" class="btn">FAZER CADASTRO</button>
+        <button id="BeditarCadastro" class="btn">EDITAR CADASTRO</button>
+        <button id="BdeletarCadastro" class="btn">DELETAR CADASTRO</button>
+        <button id="BlistarAlunoRA" class="btn">LISTAR ALUNO <br>PELO RA</button>
+        <button id="BlistarTodosAlunos" class="btn">LISTAR ALUNOS</button>
+    
+        
+    </div>
+   
     <script type="module" src="./indexFirebase.js"></script>
     <script src="./index.js"></script>
 </body>

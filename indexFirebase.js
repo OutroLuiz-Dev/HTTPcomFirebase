@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-import { getDatabase, ref, set, get, update, remove, push } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -16,10 +16,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// POST
+const modal = document.querySelector('#dialog');
+const fazerCadastro = document.querySelector('#BfazerCadastro');
+const cadastrar = document.querySelector('#Bcadastrar');
+const nome = document.querySelector('#nome');
+const ra = document.querySelector('#ra');
+
+// Abre o modal ao clicar em "FAZER CADASTRO"
+fazerCadastro.addEventListener('click', () => {
+    modal.showModal();
+});
+
+// Função para adicionar o item ao Firebase
 const addItem = async (data) => {
-    const newItemRef = ref(db, 'Alunos'); // Altere 'suaColecao' para o caminho desejado
-    const newItemKey = push(newItemRef).key; // Gera uma nova chave para o item
+    const newItemRef = ref(db, 'Alunos'); 
+    const newItemKey = push(newItemRef).key; 
 
     try {
         await set(ref(db, `Alunos/${newItemKey}`), data);
@@ -28,6 +39,16 @@ const addItem = async (data) => {
         console.error('Erro ao adicionar documento: ', error);
     }
 };
+
+// Associa o evento de clique ao botão de cadastro
+cadastrar.addEventListener('click', () => {
+    addItem({ 
+        nome: nome.value, 
+        ra: ra.value 
+    });
+    modal.close(); // Fecha o modal após o cadastro
+});
+
 
 // Exemplo de uso:
 // addItem({ nome: 'Aline', ra: 10222444, sala: 3 });
@@ -154,5 +175,5 @@ const deleteItemByRa = async (ra) => {
 };
 
 // Exemplo de uso:
-deleteItemByRa(333333); // Altere 'RA_DO_ALUNO' para o RA real
+// deleteItemByRa(333333); // Altere 'RA_DO_ALUNO' para o RA real
 
