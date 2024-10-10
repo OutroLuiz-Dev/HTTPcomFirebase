@@ -26,24 +26,37 @@ const ra = document.querySelector('#ra');
 
 // Função para adicionar o item 
 const addItem = async (data) => {
-    const newItemRef = ref(db, 'Alunos'); 
-    const newItemKey = push(newItemRef).key; 
+    const newItemRef = ref(db, 'Alunos');
+    const newItemKey = push(newItemRef).key;
 
     try {
         await set(ref(db, `Alunos/${newItemKey}`), data);
         console.log('Documento adicionado com ID: ', newItemKey);
+        alert('Aluno cadastrado com sucesso!');
     } catch (error) {
         console.error('Erro ao adicionar documento: ', error);
+        alert('Erro ao cadastrar o aluno. Tente novamente.');
     }
 };
 
-// Associa o evento de clique ao botão de cadastro
+// Função para validar os campos de nome e RA
+const validarCampos = () => {
+    if (nome.value.trim() === '' || ra.value.trim() === '') {
+        alert('Por favor, preencha todos os campos.');
+        return false;
+    }
+    return true;
+};
+
+
 cadastrar.addEventListener('click', () => {
-    addItem({ 
-        nome: nome.value, 
-        ra: ra.value 
-    });
-    modal.close(); // Fecha o modal após o cadastro
+    if (validarCampos()) {
+        addItem({
+            nome: nome.value,
+            ra: ra.value
+        });
+      
+    }
 });
 
 
