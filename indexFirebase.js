@@ -12,17 +12,16 @@ const firebaseConfig = {
     appId: "1:282741363642:web:ba5308ed05481279f60383"
 };
 
-// Inicializa o Firebase
+//Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+
+//Faz uma chamada dos meus elementos HTML para a DOM do javascript
 const modal = document.querySelector('#dialog');
-const fazerCadastro = document.querySelector('#BfazerCadastro');
 const cadastrar = document.querySelector('#Bcadastrar');
 const nome = document.querySelector('#nome');
 const ra = document.querySelector('#ra');
-
-
 
 // Função para adicionar o item 
 const addItem = async (data) => {
